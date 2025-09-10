@@ -5,19 +5,27 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Junk Removal &amp; Hauling in Minnesota – CleanHome</title>
   <meta name="description" content="CleanHome provides fast, eco‑friendly junk removal and hauling services across Minnesota. Get a free estimate online or by phone.">
-  <link rel="canonical" href="https://cleanhomejunkremoval.com/">
+  <link rel="canonical" href="https://cleanhome.com/">
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://cleanhomejunkremoval.com/">
+  <meta property="og:url" content="https://cleanhome.com/">
   <meta property="og:title" content="Junk Removal &amp; Hauling in Minnesota – CleanHome">
   <meta property="og:description" content="CleanHome offers fast, eco‑friendly junk removal and hauling services across Minnesota. Book online or by phone and enjoy transparent pricing.">
-  <meta property="og:image" content="https://cleanhomejunkremoval.com/og-image.jpg">
+  <meta property="og:image" content="https://cleanhome.com/og-image.jpg">
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://cleanhomejunkremoval.com//">
+  <meta name="twitter:url" content="https://cleanhome.com/">
   <meta name="twitter:title" content="Junk Removal &amp; Hauling in Minnesota – CleanHome">
   <meta name="twitter:description" content="Fast, eco‑friendly junk removal and hauling across Minnesota. Get your free estimate today.">
-  <meta name="twitter:image" content="https://cleanhomejunkremoval.com/og-image.jpg">
+  <meta name="twitter:image" content="https://cleanhome.com/og-image.jpg">
+
+  <!-- Leaflet CSS for interactive maps -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
   <!-- Structured data for LocalBusiness -->
   <script type="application/ld+json">
   {
@@ -44,7 +52,7 @@
         "closes": "18:00"
       }
     ],
-    "priceRange": "$"
+    "priceRange": "$$"
   }
   </script>
   <!-- Google Fonts -->
@@ -65,6 +73,11 @@
         <a href="tel:+18883339999" class="topbar__link"><strong>Call us:</strong> 888 333 9999</a>
         <a href="mailto:info@cleanhome.com" class="topbar__link"><strong>Email:</strong> info@cleanhome.com</a>
       </div>
+      <form class="topbar__search" role="search" action="#" method="get">
+        <label class="sr-only" for="site-search">Search</label>
+        <input id="site-search" name="q" type="search" placeholder="Search...">
+        <button type="submit" class="btn btn--search">Search</button>
+      </form>
     </div>
   </div>
 
@@ -122,9 +135,16 @@
           <p class="hero__subtitle">CleanHome makes junk removal easy and hassle‑free. Our team clears out unwanted items quickly and responsibly.</p>
           <a href="#contact" class="btn btn--accent btn--lg">Get a free estimate</a>
         </div>
-        <div class="hero__media" aria-hidden="true">
-          <!-- Replace this with your hero image -->
-          <div class="media-placeholder">Hero image / CleanHome team</div>
+        <div class="hero__media">
+          <!-- Hero image illustrating the CleanHome team removing junk.
+               The alt text describes the scene for accessibility and SEO.
+               Replace assets/Dump-Trailer.png with your own image if desired. -->
+          <img
+            src="assets/Dump-Trailer.png"
+            alt="CleanHome team removing junk from a home"
+            class="hero__image"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
@@ -135,7 +155,10 @@
         <h2 id="booking-title" class="section__title">Ways to book our services</h2>
         <div class="grid grid--3">
           <article class="card booking-card">
-            <div class="booking-card__media" aria-hidden="true"></div>
+            <div class="booking-card__media" aria-hidden="true">
+              <!-- Phone call illustration for the Call Us card -->
+              <img src="assets/phone-call.png" alt="CleanHome agent speaking on the phone" class="booking-card__image" loading="lazy" />
+            </div>
             <h3 class="card__title">Call Us</h3>
             <p class="card__text">Reach us directly by phone. We'll provide immediate assistance, answer your questions and schedule your service.</p>
             <a class="btn btn--accent card__btn" href="tel:+18883339999">888&nbsp;333&nbsp;9999</a>
@@ -170,9 +193,14 @@
             <li>Customer satisfaction guaranteed</li>
           </ul>
         </div>
-        <div class="removal__media" aria-hidden="true">
-          <!-- Replace with an image of hauling/dumpster -->
-          <div class="media-placeholder">Removal image</div>
+        <div class="removal__media">
+          <!-- Before/after photo illustrating the effectiveness of our junk removal service -->
+          <img
+            src="assets/removal-before-after.png"
+            alt="Before and after junk removal in a garage"
+            class="removal__image"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
@@ -192,7 +220,7 @@
     <section id="about" class="section about" aria-labelledby="about-title">
       <div class="container about__wrap">
         <div class="about__content">
-          <h2 id="about-title" class="section__title">About CleanHome</h2>
+          <h2 id="about-title" class="section__title">About CleanHome Junk Removal & Hauling</h2>
           <p>We take the stress out of junk removal. Our dedicated team safely removes unwanted items from your home or business and ensures they are recycled or donated whenever possible. We’re committed to a cleaner, greener Minnesota.</p>
           <a href="#contact" class="btn btn--accent">Learn more</a>
         </div>
@@ -238,6 +266,9 @@
       </div>
     </section>
 
+    <!-- The dedicated service area map section has been removed.
+         We render the interactive map alongside the contact form instead. -->
+
     <!-- Blog posts section -->
     <section id="blog" class="section blog" aria-labelledby="blog-title">
       <div class="container">
@@ -268,10 +299,12 @@
     <!-- Contact & Location section -->
     <section id="contact" class="section contact" aria-labelledby="contact-title">
       <div class="container contact__wrap">
-        <div class="contact__map" aria-hidden="true">
-          <!-- Embed a map iframe or image here -->
-          <div class="media-placeholder">Map</div>
+        <!-- Left column: interactive service area map with heading -->
+        <div class="contact__map">
+          <h2 id="service-area-title" class="section__title">Our Service Area</h2>
+          <div id="service-map" class="service-area__map" role="region" aria-label="Service area map"></div>
         </div>
+        <!-- Right column: contact form -->
         <div class="contact__form">
           <h2 id="contact-title" class="section__title">Send us a message</h2>
           <form class="form" method="post" action="#" novalidate>
@@ -307,12 +340,12 @@
   <!-- Footer -->
   <footer class="footer" role="contentinfo">
     <div class="container footer__wrap">
-      <div class="footer__brand">
+      <!-- <div class="footer__brand">
         <a class="brand" href="/">
           <span class="brand__logo">Clean<span class="brand__highlight">Home</span></span>
         </a>
         <a href="#contact" class="btn btn--accent footer__btn">Book Now</a>
-      </div>
+      </div> -->
       <div class="footer__grid">
         <div class="footer__column">
           <h3 class="footer__heading">Local office</h3>
@@ -368,6 +401,40 @@
         mobileNav.classList.toggle('mobile-nav--open');
       });
     }
+  </script>
+
+  <!-- Leaflet JS and map initialization for service area -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const coordinates = [
+        [45.51405867790738, -94.0904099887802],
+        [45.516701377417675, -93.22894319918407],
+        [44.90160745470492, -93.22832733627872],
+        [44.901511154550684, -94.09592324401353]
+      ];
+      const mapEl = document.getElementById('service-map');
+      if (mapEl) {
+        const map = L.map(mapEl, { scrollWheelZoom: false });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+        const polygon = L.polygon(coordinates, {
+          color: '#1B5FFF',
+          weight: 2,
+          fillColor: '#17B26A',
+          fillOpacity: 0.2,
+          lineJoin: 'round'
+        }).addTo(map);
+        map.fitBounds(polygon.getBounds(), { padding: [20, 20] });
+        polygon.bindPopup('CleanHome service area');
+      }
+    });
   </script>
 </body>
 </html>
